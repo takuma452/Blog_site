@@ -1,0 +1,14 @@
+{% extends "layout.html"%}
+
+{% block title %}Timoブログ(自分のブログを投稿したり、他の人のブログを覗いてみよう！){% endblock %}
+
+{% block content %}
+<!-- 後ほど整える-->
+<div>
+  <h1>ようこそ、Timoブログへ！</h1>
+  <p>ここでは、自分のブログを投稿したり、他の人のブログを覗いてみることができます。</p>
+  <p>まずは、<a href="{{ url_for('login') }}">ログイン</a>してみましょう！</p>
+  <p>まだアカウントをお持ちでない方は、
+  <a href="{{ url_for('register') }}">新規登録</a>から始めてください。</p>
+</div>
+{% endblock %}
