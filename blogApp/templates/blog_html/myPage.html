@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>マイページ</title>
+</head>
+<body>
+  <h1>{{ user_name }}さんのマイページ</h1>
+
+  <section>
+        <h2>新しいブログを書く</h2>
+        <form method="POST" action="{{ url_for('makeVlog') }}">
+            <label for="title">タイトル:</label><br>
+            <input type="text" id="title" name="title" required><br><br>
+
+            <label for="content">本文:</label><br>
+            <textarea id="content" name="content" rows="5" cols="40" required></textarea><br><br>
+
+            <button type="submit">投稿する</button>
+        </form>
+  </section>
+
+  <hr>
+
+  <section>
+        <h2>過去のブログ</h2>
+        {% for blog in blogs %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+            <h3>{{ blog.title }}</h3>
+            <p>{{ blog.content }}</p>
+            <small>投稿日時: {{ blog.created_at }}</small><br>
+
+            <!-- 削除フォーム（POSTを想定） -->
+            <form method="POST" action="{{ url_for('delete_blog', blog_id=blog.id) }}" style="margin-top: 5px;">
+                <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
+            </form>
+        </div>
+        {% else %}
+        <p>まだブログ投稿がありません。</p>
+        {% endfor %}
+    </section>
+
+</body>
+</html>

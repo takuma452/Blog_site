@@ -6,7 +6,7 @@
 <div>
   <h1>新規登録</h1>
   <form method="POST" action="{{ url_for('register') }}">
-    
+
     <div>
       <label for="username">ユーザー名:</label>
       <input type="text" id="username" name="username" required>
@@ -24,4 +24,9 @@
 
     <button type="submit">登録</button>
 
-    {% endblock %}
+{% endblock %}
+
+{% block footer %}
+{{ super() }}
+<p>アカウントをお持ちの方は、<a href="{{ url_for('login') }}">ログイン</a>してください。</p>
+{% endblock %}

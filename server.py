@@ -1,4 +1,4 @@
-from vlogApp import app
+from blogApp import app
 
 if __name__ == "__main__":
     app.run()
