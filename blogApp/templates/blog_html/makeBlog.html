@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブログを書く</title>
+</head>
+<body>
+  <div>
+    <form action={{ url_for('makeBlog')}} method="post">
+
+      <label for="title">タイトル:</label>
+      <input type="text" id="title" name="title" required>
+
+      <label for="content">内容:</label>
+      <input type="text" id="content" name="content" required>
+
+      <label for="author">投稿者:</label>
+      <input type="text" id="author" name="author" required>
+
+      <button type="submit">送信</button>
+    </form>
+</body>
+</html>

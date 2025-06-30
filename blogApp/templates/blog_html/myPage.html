@@ -7,9 +7,9 @@
 </head>
 <body>
   <h1>{{ user_name }}さんのマイページ</h1>
-  
-  <h2>新しいブログを書く</h2>
-
+  <p>error</p>
+  <a href="{{ url_for('makeBlog') }}">ブログを作る</a>
+      
 
   <section>
         <h2>あなたのブログ一覧</h2>
@@ -18,16 +18,11 @@
             <h3>{{ blog.title }}</h3>
             <p>{{ blog.content }}</p>
             <small>投稿日時: {{ blog.created_at }}</small><br>
-
-            <!-- 削除フォーム（POSTを想定） -->
-            <form method="POST" action="{{ url_for('delete_blog', blog_id=blog.id) }}" style="margin-top: 5px;">
-                <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
-            </form>
+            s
         </div>
         {% else %}
         <p>まだブログ投稿がありません。</p>
         {% endfor %}
-    </section>
-
+  </section>
 </body>
 </html>

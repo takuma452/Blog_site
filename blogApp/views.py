@@ -37,11 +37,12 @@ def login():
         if user and check_password_hash(user.hashed_pw, myPassword):
             return redirect(url_for('myPage'))
         else:
-            return "ログイン失敗"
+            error = "ログインに失敗しました。再度お試しください。"
+            return render_template('blog_html/login.html', error=error)
 
     return render_template('blog_html/login.html') 
 
-# マイページ-- 自身のブログを表示したり、ブログを書いたりできる。
+# マイページ-- 自身のブログを表示する。
 @app.route('/myPage', methods=['GET', 'POST'])
 def myPage():
     if request.method == 'POST':
@@ -54,3 +55,16 @@ def myPage():
         return redirect(url_for('myPage'))
     blogs = Blog.query.order_by(Blog.created_at.desc()).all()
     return render_template('blog_html/myPage.html', blogs=blogs)
+
+#ブログを書く
+@app.route('/makeBlog', methods=['GET', 'POST'])
+def makeBlog():
+        if request.method == 'POST':
+            title = request.form['title']
+            content = request.form['content']
+            author = request.form['author']
+            blog = Blog(title=title, content=content, author=author)
+            db.session.add(blog)
+            db.session.commit()
+            return redirect(url_for('myPage'))
+        return render_template('blog_html/makeBlog.html')
